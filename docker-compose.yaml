@@ -14,14 +14,15 @@ services:
     image: nandini965/backend-expence:latest
     container_name: backend-nodejs
     environment:
-      - DB_HOST=mysql-db
-      - DB_USER=expense
-      - DB_PASSWORD=ExpenseApp@1
-      - DB_NAME=expence_db
+      DB_HOST: mysql-db
+      DB_USER: expense
+      DB_PASSWORD: ExpenseApp@1
+      DB_NAME: expence_db
     ports:
       - "5000:5000"
     depends_on:
       - mysql-db
+    command: ["sh", "-c", "sleep 10 && npm start"]  # Delay startup to wait for MySQL
 
   mysql-db:
     image: mysql:latest
