@@ -1,10 +1,10 @@
-
 # Stage 1: Build the React app
 FROM node:12.18.2 AS build
 
 WORKDIR /app
 
-COPY package.json package-lock.json /app/
+# Copy package.json and package-lock.json from the backend directory to the container
+COPY ./backend/package.json ./backend/package-lock.json /app/
 
 RUN npm install  # Use npm since package-lock.json is present
 
