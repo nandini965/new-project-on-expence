@@ -1,7 +1,7 @@
 version: '3'
 services:
   frontend:
-    image: nginx:latest
+    image: nandini965/frontend-expence:latest
     container_name: frontend-nginx
     ports:
       - "80:80"
@@ -21,7 +21,7 @@ services:
     ports:
       - "5000:5000"
     depends_on:
-      - mysql-db
+      - expence-db
     command: ["sh", "-c", "sleep 10 && npm start"]  # Delay startup to wait for MySQL
 
   mysql-db:
