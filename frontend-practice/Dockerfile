@@ -30,3 +30,4 @@ COPY --from=build /app/build /usr/share/nginx/html
 
 # Start Nginx
 CMD ["nginx", "-g", "daemon off;"]
+#
