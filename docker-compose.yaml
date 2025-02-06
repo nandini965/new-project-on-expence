@@ -21,7 +21,7 @@ services:
     ports:
       - "5000:5000"
     depends_on:
-      - expence-db
+      - mysql-db
     command: ["sh", "-c", "sleep 10 && npm start"]  # Delay startup to wait for MySQL
 
   mysql-db:
