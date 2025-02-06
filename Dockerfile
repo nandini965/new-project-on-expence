@@ -9,7 +9,7 @@ COPY package.json package-lock.json /app/
 
 RUN npm install  # Use npm since package-lock.json is present
 
-COPY . .
+COPY frontend-practice .
 
 RUN npm run build
 
