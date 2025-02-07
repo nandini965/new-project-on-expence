@@ -11,8 +11,8 @@ services:
     depends_on:
       mysql-db:
         condition: service_healthy
-    restart: always
-
+      command: [ "sh", "-c", "sleep 10 && node index.js" ]
+      restart: always
   mysql-db:
     image: mysql:latest
     environment:
