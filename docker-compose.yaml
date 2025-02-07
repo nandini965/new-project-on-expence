@@ -11,7 +11,10 @@ services:
       - DB_PWD=ExpenseApp@1
       - DB_DATABASE=transactions
     depends_on:
-      - mysql-db
+      mysql-db:
+        condition: service_healthy
+    restart: always
+
 
   mysql-db:
     image: mysql:latest
