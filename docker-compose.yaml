@@ -1,4 +1,12 @@
 services:
+  frontend:
+    build: ./frontend
+    ports:
+      - "3000:3000"  # Expose React frontend on port 3000
+    depends_on:
+      - backend  # Ensure backend starts before frontend
+    restart: always
+
   backend:
     build: ./backend
     environment:
@@ -13,6 +21,7 @@ services:
         condition: service_healthy
     command: [ "sh", "-c", "sleep 10 && node index.js" ]
     restart: always
+
   mysql-db:
     image: mysql:latest
     environment:
@@ -22,7 +31,7 @@ services:
       MYSQL_PASSWORD: ExpenseApp@1
     ports:
       - "3306:3306"
-    healthcheck:  # ✅ Added Health Check
+    healthcheck:
       test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
       interval: 10s
       retries: 5
