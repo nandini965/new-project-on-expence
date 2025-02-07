@@ -1,18 +1,18 @@
 services:
   backend:
-    image: nandini965/backend-expence:latest
-    ports:
-      - "5000:8080"
+    build: ./backend
     environment:
       - DB_HOST=mysql-db
       - DB_USER=expense
       - DB_PWD=ExpenseApp@1
       - DB_DATABASE=transactions
+    ports:
+      - "5000:8080"
     depends_on:
       mysql-db:
         condition: service_healthy
-      command: [ "sh", "-c", "sleep 10 && node index.js" ]
-      restart: always
+    command: [ "sh", "-c", "sleep 10 && node index.js" ]
+    restart: always
   mysql-db:
     image: mysql:latest
     environment:
