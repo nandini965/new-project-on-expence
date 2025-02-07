@@ -1,0 +1,24 @@
+version: '3'
+
+services:
+  backend:
+    image: nandini965/backend-expence:latest
+    ports:
+      - "5000:8080"
+    environment:
+      - DB_HOST=mysql-db
+      - DB_USER=expense
+      - DB_PWD=ExpenseApp@1
+      - DB_DATABASE=transactions
+    depends_on:
+      - mysql-db
+
+  mysql-db:
+    image: mysql:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: ExpenseApp@1
+      MYSQL_DATABASE: transactions
+      MYSQL_USER: expense
+      MYSQL_PASSWORD: ExpenseApp@1
+    ports:
+      - "3306:3306"
