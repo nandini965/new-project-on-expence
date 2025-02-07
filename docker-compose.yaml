@@ -1,5 +1,3 @@
-version: '3'
-
 services:
   backend:
     image: nandini965/backend-expence:latest
@@ -15,7 +13,6 @@ services:
         condition: service_healthy
     restart: always
 
-
   mysql-db:
     image: mysql:latest
     environment:
@@ -25,3 +22,8 @@ services:
       MYSQL_PASSWORD: ExpenseApp@1
     ports:
       - "3306:3306"
+    healthcheck:  # ✅ Added Health Check
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s
+      retries: 5
+      timeout: 5s
