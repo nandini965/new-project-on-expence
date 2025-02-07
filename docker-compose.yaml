@@ -1,12 +1,4 @@
 services:
-  frontend:
-    build: ./frontend
-    ports:
-      - "3000:80"  # Expose React frontend on port 8080
-    depends_on:
-      - backend  # Ensure backend starts before frontend
-    restart: always
-
   backend:
     build: ./backend
     environment:
@@ -36,3 +28,10 @@ services:
       interval: 10s
       retries: 5
       timeout: 5s
+
+  frontend:
+    image: nandini965/frontend-expence:latest  # Use the built image
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
