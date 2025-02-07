@@ -2,7 +2,7 @@ services:
   frontend:
     build: ./frontend
     ports:
-      - "80:8080"  # Expose React frontend on port 8080
+      - "3000:80"  # Expose React frontend on port 8080
     depends_on:
       - backend  # Ensure backend starts before frontend
     restart: always
