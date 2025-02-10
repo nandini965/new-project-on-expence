@@ -1,46 +1,46 @@
-version: "3.8"
-
-services:
-  backend:
-    build: ./backend
-    environment:
-      - DB_HOST=mysql-db
-      - DB_USER=expense
-      - DB_PWD=ExpenseApp@1
-      - DB_DATABASE=transactions
-    ports:
-      - "5000:8080"
-    depends_on:
-      mysql-db:
-        condition: service_healthy
-    restart: always
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:8080/health"]
-      interval: 15s
-      retries: 7
-      timeout: 5s
-
-  mysql-db:
-    image: mysql:8.0  # Use a stable MySQL version
-    environment:
-      MYSQL_ROOT_PASSWORD: ExpenseApp@1
-      MYSQL_DATABASE: transactions
-      MYSQL_USER: expense
-      MYSQL_PASSWORD: ExpenseApp@1
-    ports:
-      - "3306:3306"
-    healthcheck:
-      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
-      interval: 10s
-      retries: 5
-      timeout: 5s
-
-  frontend:
-    image: nandini965/frontend-expence:latest
-    ports:
-      - "80:8080"
-    depends_on:
-      backend:
-        condition: service_healthy
-    environment:
-      - REACT_APP_BACKEND_URL=http://backend:8080
+#version: "3.8"
+#
+#services:
+#  backend:
+#    build: ./backend
+#    environment:
+#      - DB_HOST=mysql-db
+#      - DB_USER=expense
+#      - DB_PWD=ExpenseApp@1
+#      - DB_DATABASE=transactions
+#    ports:
+#      - "5000:8080"
+#    depends_on:
+#      mysql-db:
+#        condition: service_healthy
+#    restart: always
+#    healthcheck:
+#      test: ["CMD", "curl", "-f", "http://localhost:8080/health"]
+#      interval: 15s
+#      retries: 7
+#      timeout: 5s
+#
+#  mysql-db:
+#    image: mysql:8.0  # Use a stable MySQL version
+#    environment:
+#      MYSQL_ROOT_PASSWORD: ExpenseApp@1
+#      MYSQL_DATABASE: transactions
+#      MYSQL_USER: expense
+#      MYSQL_PASSWORD: ExpenseApp@1
+#    ports:
+#      - "3306:3306"
+#    healthcheck:
+#      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+#      interval: 10s
+#      retries: 5
+#      timeout: 5s
+#
+#  frontend:
+#    image: nandini965/frontend-expence:latest
+#    ports:
+#      - "80:8080"
+#    depends_on:
+#      backend:
+#        condition: service_healthy
+#    environment:
+#      - REACT_APP_BACKEND_URL=http://backend:8080
