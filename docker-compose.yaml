@@ -1,3 +1,5 @@
+version: "3.8"
+
 services:
   backend:
     build: ./backend
@@ -11,8 +13,12 @@ services:
     depends_on:
       mysql-db:
         condition: service_healthy
-    command: [ "sh", "-c", "sleep 10 && node index.js" ]
     restart: always
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/health"]
+      interval: 10s
+      retries: 5
+      timeout: 5s
 
   mysql-db:
     image: mysql:latest
@@ -22,7 +28,7 @@ services:
       MYSQL_USER: expense
       MYSQL_PASSWORD: ExpenseApp@1
     ports:
-      - "3306:8080"
+      - "3306:3306"
     healthcheck:
       test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
       interval: 10s
@@ -30,8 +36,9 @@ services:
       timeout: 5s
 
   frontend:
-    image: nandini965/frontend-expence:latest  # Use the built image
+    image: nandini965/frontend-expence:latest
     ports:
       - "80:8080"
     depends_on:
-      - backend
+      backend:
+        condition: service_healthy
