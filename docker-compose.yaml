@@ -16,12 +16,12 @@ services:
     restart: always
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8080/health"]
-      interval: 10s
-      retries: 5
+      interval: 15s
+      retries: 7
       timeout: 5s
 
   mysql-db:
-    image: mysql:latest
+    image: mysql:8.0  # Use a stable MySQL version
     environment:
       MYSQL_ROOT_PASSWORD: ExpenseApp@1
       MYSQL_DATABASE: transactions
