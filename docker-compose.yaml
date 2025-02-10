@@ -22,7 +22,7 @@ services:
       MYSQL_USER: expense
       MYSQL_PASSWORD: ExpenseApp@1
     ports:
-      - "3306:3306"
+      - "3306:8080"
     healthcheck:
       test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
       interval: 10s
@@ -32,6 +32,6 @@ services:
   frontend:
     image: nandini965/frontend-expence:latest  # Use the built image
     ports:
-      - "80:80"
+      - "80:8080"
     depends_on:
       - backend
