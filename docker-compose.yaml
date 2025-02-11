@@ -30,6 +30,8 @@ services:
       MYSQL_PASSWORD: ExpenseApp@1  # ✅ Fixed password
     ports:
       - "3306:3306"
+    volumes:
+        - ./init.sql:/docker-entrypoint-initdb.d/init.sql
     healthcheck:
       test: [ "CMD", "mysqladmin", "ping", "-h", "localhost", "-uroot", "-pExpenseApp@1" ]
       interval: 10s
