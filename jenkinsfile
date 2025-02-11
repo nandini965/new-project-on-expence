@@ -1,0 +1,28 @@
+pipeline {
+agent any
+ environment {
+        MY_VAR = 'value'
+        ANOTHER_VAR = 'another_value'
+    }
+stages {
+stage('git clone') {
+steps {
+    git url: "https://github.com/nandini965/new-project-on-expence.git" branch: "main"
+}
+}
+
+ stage('docker push') {
+             steps {
+                 echo "MY_VAR:${env.dockerHubUser}"
+                 echo "ANOTHER_VAR:${env.dockerHubPass}"
+                sh 'echo $dockerHubPass | docker login -u $dockerHubUser --password-stdin'
+                 sh "docker push ${env.dockerHubUser}/node-todo-cicd:latest"
+}
+}
+ stage('docker compose') {
+  steps {
+  docker-compose up -d --build
+  }
+}
+}
+}
