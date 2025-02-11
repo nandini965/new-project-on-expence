@@ -19,7 +19,7 @@ services:
       DB_PASSWORD: ExpenseApp@1
       DB_NAME: transactions
     depends_on:
-      - db
+      - mysql-db
 
   db:
     image: mysql:latest
