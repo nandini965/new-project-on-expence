@@ -3,9 +3,10 @@ services:
     image: nandini965/frontend-expence:latest
     ports:
       - "80:80"
+    volumes:
+        - ./frontend-practice/nginx/default.conf:/etc/nginx/conf.d/default.conf  # Mount custom config
     depends_on:
       - backend
-
   backend:
     image: nandini965/backend-expence:latest
     ports:
