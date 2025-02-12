@@ -8,11 +8,11 @@ backend:
   image: nandini965/backend-expence:latest
   port: 8080
   env:
-    DB_HOST = mysql-db
-    DB_USER = expense
-    DB_PASSWORD = ExpenseApp@1
+    DB_HOST = "mysql-db"
+    DB_USER = "expense"
+    DB_PASSWORD = "ExpenseApp@1"
     DB_PORT = "3306"
-    DB_NAME =  transactions
+    DB_NAME =  "transactions"
 
 #
 #mysql:
