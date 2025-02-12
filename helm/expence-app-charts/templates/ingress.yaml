@@ -18,5 +18,4 @@ spec:
                 name: frontend
                 port:
                   number: {{ .Values.frontend.port }}
-  {{- end }}
 #
