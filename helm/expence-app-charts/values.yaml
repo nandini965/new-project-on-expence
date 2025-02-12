@@ -23,6 +23,6 @@ frontend:
 #  password: ExpenseApp@1
 #  storage: 1Gi
 #
-#ingress:
-#  enabled: true
-#  host: expence-app.local
+ingress:
+  enabled: true
+  host: expence-app.local
