@@ -13,4 +13,4 @@ spec:
   resources:
     requests:
       storage: 1Gi
-  storageClassName: "standard"  # Change this if you have a different StorageClass; remove the line if you want to use the default.
+  storageClassName: "gp2"Change this if you have a different StorageClass; remove the line if you want to use the default.
