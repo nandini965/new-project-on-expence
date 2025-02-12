@@ -16,14 +16,14 @@ backend:
 
 
 #
-#mysql:
-#  image: mysql:latest
-#  port: 3306
-#  rootPassword: ExpenseApp@1
-#  database: transactions
-#  user: expense
-#  password: ExpenseApp@1
-#  storage: 1Gi
+mysql:
+   image: mysql:latest
+   port: 3306
+   rootPassword: ExpenseApp@1
+   database: transactions
+   user: expense
+   password: ExpenseApp@1
+
 #
 ingress:
   enabled: true
