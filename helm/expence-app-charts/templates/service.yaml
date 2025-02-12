@@ -1,15 +1,40 @@
-# Service for the application
 apiVersion: v1
 kind: Service
 metadata:
-  name: new-project-on-expense
-  labels:
-    app: new-project-on-expense
+  name: frontend
 spec:
-  ports:
-    - port: http
-      targetPort: http
-      protocol: TCP
   selector:
-    app: new-project-on-expense
+    app: frontend
+  ports:
+    - protocol: TCP
+      port: {{ .Values.frontend.port }}
+      targetPort: {{ .Values.frontend.port }}
+  type: ClusterIP
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: backend
+spec:
+  selector:
+    app: backend
+  ports:
+    - protocol: TCP
+      port: {{ .Values.backend.port }}
+      targetPort: {{ .Values.backend.port }}
+  type: ClusterIP
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mysql-db
+spec:
+  selector:
+    app: mysql-db
+  ports:
+    - protocol: TCP
+      port: {{ .Values.mysql.port }}
+      targetPort: {{ .Values.mysql.port }}
   type: ClusterIP
