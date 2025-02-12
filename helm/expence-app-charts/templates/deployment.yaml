@@ -66,15 +66,15 @@ spec:
     spec:
       containers:
         - name: mysql-db
-          image: "{{ index .Values "mysql-db" "image" }}"
+          image: { { index .Values "mysql-db" "image" | quote } }
           ports:
-            - containerPort: "{{ index .Values "mysql-db" "port" }}"
+            - containerPort: { { index .Values "mysql-db" "port" | int } }
           env:
             - name: MYSQL_ROOT_PASSWORD
-              value: "{{ index .Values "mysql-db" "rootPassword" }}"
+              value: { { index .Values "mysql-db" "rootPassword" | quote } }
             - name: MYSQL_DATABASE
-              value: "{{ index .Values "mysql-db" "database" }}"
+              value: { { index .Values "mysql-db" "database" | quote } }
             - name: MYSQL_USER
-              value: "{{ index .Values "mysql-db" "user" }}"
+              value: { { index .Values "mysql-db" "user" | quote } }
             - name: MYSQL_PASSWORD
-              value: "{{ index .Values "mysql-db" "password" }}"
+              value: { { index .Values "mysql-db" "password" | quote } }
