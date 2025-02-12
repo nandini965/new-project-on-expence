@@ -1,0 +1,15 @@
+# Service for the application
+apiVersion: v1
+kind: Service
+metadata:
+  name: new-project-on-expense
+  labels:
+    app: new-project-on-expense
+spec:
+  ports:
+    - port: http
+      targetPort: http
+      protocol: TCP
+  selector:
+    app: new-project-on-expense
+  type: ClusterIP

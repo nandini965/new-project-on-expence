@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: new-project-on-expense
+  labels:
+    app: new-project-on-expense
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: new-project-on-expense
+  template:
+    metadata:
+      labels:
+        app: new-project-on-expense
+    spec:
+      containers:
+        - name: new-project-on-expense
+          image: nandini965/new-project-on-expense:latest
+          ports:
+            - containerPort: {{ .Values.appPort }}
+
+
+
+
