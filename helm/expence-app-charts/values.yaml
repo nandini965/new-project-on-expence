@@ -16,7 +16,7 @@ backend:
 
 
 #
-mysql-db:
+"mysql-db":
    image: mysql:latest
    port: 3306
    rootPassword: ExpenseApp@1
