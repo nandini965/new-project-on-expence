@@ -29,14 +29,14 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: mysql
+  name: mysql-db
 spec:
   selector:
-    app: mysql
+    app: mysql-db
   ports:
     - protocol: TCP
-      port: {{ .Values.mysql.port }}
-      targetPort: {{ .Values.mysql.port }}
+      port: {{ .Values.mysql-db.port }}
+      targetPort: {{ .Values.mysql-db.port }}
   type: ClusterIP
 
 ---
@@ -49,8 +49,8 @@ spec:
     app: mysql-db
   ports:
     - protocol: TCP
-      port: {{ .Values.mysql.port }}
-      targetPort: {{ .Values.mysql.port }}
+      port: {{ .Values.mysql-db.port }}
+      targetPort: {{ .Values.mysql-db.port }}
   type: NodePort
 
 

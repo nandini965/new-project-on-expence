@@ -53,28 +53,28 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: mysql
+  name: mysql-db
 spec:
   replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      app: mysql
+      app: mysql-db
   template:
     metadata:
       labels:
-        app: mysql
+        app: mysql-db
     spec:
       containers:
-        - name: mysql
-          image: {{ .Values.mysql.image }}
+        - name: mysql-db
+          image: {{ .Values.mysql-db.image }}
           ports:
-            - containerPort: {{ .Values.mysql.port }}
+            - containerPort: {{ .Values.mysql-db.port }}
           env:
             - name: MYSQL_ROOT_PASSWORD
-              value: "{{ .Values.mysql.rootPassword }}"
+              value: "{{ .Values.mysql-db.rootPassword }}"
             - name: MYSQL_DATABASE
-              value: "{{ .Values.mysql.database }}"
+              value: "{{ .Values.mysql-db.database }}"
             - name: MYSQL_USER
-              value: "{{ .Values.mysql.user }}"
+              value: "{{ .Values.mysql-db.user }}"
             - name: MYSQL_PASSWORD
-              value: "{{ .Values.mysql.password }}"
+              value: "{{ .Values.mysql-db.password }}"
