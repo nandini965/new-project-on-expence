@@ -6,6 +6,7 @@ frontend:
 
 backend:
   image: nandini965/backend-expence:latest
+  port: 8080
   env:
     DB_HOST = mysql-db
     DB_USER = expense
