@@ -1,28 +1,28 @@
-replicaCount: 1
+replicaCount: 3
 
 frontend:
   image: nandini965/frontend-expence:latest
   port: 80
 
-backend:
-  image: nandini965/backend-expence:latest
-  port: 8080
-  env:
-    DB_HOST: mysql-db
-    DB_PORT: "3306"
-    DB_USER: expense
-    DB_PASSWORD: ExpenseApp@1
-    DB_NAME: transactions
-
-mysql:
-  image: mysql:latest
-  port: 3306
-  rootPassword: ExpenseApp@1
-  database: transactions
-  user: expense
-  password: ExpenseApp@1
-  storage: 1Gi
-
-ingress:
-  enabled: true
-  host: expence-app.local
+#backend:
+#  image: nandini965/backend-expence:latest
+#  port: 8080
+#  env:
+#    DB_HOST: mysql-db
+#    DB_PORT: "3306"
+#    DB_USER: expense
+#    DB_PASSWORD: ExpenseApp@1
+#    DB_NAME: transactions
+#
+#mysql:
+#  image: mysql:latest
+#  port: 3306
+#  rootPassword: ExpenseApp@1
+#  database: transactions
+#  user: expense
+#  password: ExpenseApp@1
+#  storage: 1Gi
+#
+#ingress:
+#  enabled: true
+#  host: expence-app.local
