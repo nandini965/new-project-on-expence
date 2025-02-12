@@ -35,8 +35,8 @@ spec:
     app: mysql-db
   ports:
     - protocol: TCP
-      port: {{ .Values["mysql-db"].port }}
-      targetPort: {{ .Values["mysql-db"].port }}
+      port: {{ index .Values "mysql-db" "port" }}
+      targetPort: {{ index .Values "mysql-db" "port" }}
   type: ClusterIP
 
 ---
@@ -49,9 +49,8 @@ spec:
     app: mysql-db
   ports:
     - protocol: TCP
-      port: {{ .Values["mysql-db"].port }}
-      targetPort: {{ .Values["mysql-db"].port }}
+      port: {{ index .Values "mysql-db" "port" }}
+      targetPort: {{ index .Values "mysql-db" "port" }}
   type: NodePort
-
 
 
