@@ -4,15 +4,15 @@ frontend:
   image: nandini965/frontend-expence:latest
   port: 80
 
-#backend:
-#  image: nandini965/backend-expence:latest
-#  port: 8080
-#  env:
-#    DB_HOST: mysql-db
-#    DB_PORT: "3306"
-#    DB_USER: expense
-#    DB_PASSWORD: ExpenseApp@1
-#    DB_NAME: transactions
+backend:
+  image: nandini965/backend-expence:latest
+  env:
+    DB_HOST = mysql-db
+    DB_USER = expense
+    DB_PASSWORD = ExpenseApp@1
+    DB_PORT = "3306"
+    DB_NAME =  transactions
+
 #
 #mysql:
 #  image: mysql:latest

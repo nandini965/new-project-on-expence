@@ -18,4 +18,10 @@ spec:
                 name: frontend
                 port:
                   number: {{ .Values.frontend.port }}
-#
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: backend
+                port:
+                  number: { { .Values.backend.port } }
