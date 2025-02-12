@@ -9,7 +9,7 @@ backend:
   port: 8080
   env:
     DB_HOST: mysql-db
-    DB_PORT: "3306"
+    DB_PORT: 3306
     DB_USER: expense
     DB_PASSWORD: ExpenseApp@1
     DB_NAME: transactions
