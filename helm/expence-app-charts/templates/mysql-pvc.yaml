@@ -1,17 +1,16 @@
 apiVersion: v1
-kind: PersistentVolume
+kind: PersistentVolumeClaim
 metadata:
-  name: mysql-pv
+  name: mysql-pvc
   labels:
     app.kubernetes.io/managed-by: "Helm"
   annotations:
     meta.helm.sh/release-name: "new-project-expence-app"
     meta.helm.sh/release-namespace: "default"
 spec:
-  capacity:
-    storage: 1Gi
   accessModes:
     - ReadWriteOnce
-  persistentVolumeReclaimPolicy: Retain
-  hostPath:
-    path: "/mnt/data"  # <-- This is the local path on the worker node
+  resources:
+    requests:
+      storage: 1Gi
+  storageClassName: "standard"  # Change this if you have a different StorageClass; remove the line if you want to use the default.
