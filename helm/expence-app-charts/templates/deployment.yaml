@@ -66,9 +66,9 @@ spec:
     spec:
       containers:
         - name: mysql-db
-          image: {{ index .Values "mysql" "image" }}
+          image: "{{ index .Values "mysql" "image" }}"
           ports:
-            - containerPort: {{ index .Values "mysql-db" "port" }}
+            - containerPort: "{{ index .Values "mysql-db" "port" }}"
           env:
             - name: MYSQL_ROOT_PASSWORD
               value: "{{ index .Values "mysql-db" "rootPassword" }}"
