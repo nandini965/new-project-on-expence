@@ -19,10 +19,10 @@ backend:
 "mysql-db":
    image: mysql:latest
    port: 3306
-   rootPassword: ExpenseApp@1
-   database: transactions
-   user: expense
-   password: ExpenseApp@1
+   rootPassword: "ExpenseApp@1"
+   database: "transactions"
+   user: "expense"
+   password: "ExpenseApp@1"
 
 #
 ingress:
