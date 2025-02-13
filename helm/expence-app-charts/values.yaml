@@ -1,4 +1,4 @@
-replicaCount: 3
+replicaCount: 1
 
 frontend:
   image: nandini965/frontend-expence:latest
