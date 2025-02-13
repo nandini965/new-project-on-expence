@@ -3,13 +3,14 @@ kind: Service
 metadata:
   name: frontend
 spec:
+  type: NodePort
+  ports:
+    - port: {{ .Values.frontend.port }}
+      targetPort: {{ .Values.frontend.port }}
+      nodePort: 30080  # Or any available port between 30000-32767
   selector:
     app: frontend
-  ports:
-    - protocol: TCP
-      port: {{ .Values.frontend.port }}
-      targetPort: {{ .Values.frontend.port }}
-  type: ClusterIP
+
 
 ---
 apiVersion: v1
@@ -39,18 +40,6 @@ spec:
       targetPort: {{ index .Values "mysql-db" "port" }}
   type: ClusterIP
 
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: mysql-db-nodeport
-spec:
-  selector:
-    app: mysql-db
-  ports:
-    - protocol: TCP
-      port: {{ index .Values "mysql-db" "port" }}
-      targetPort: {{ index .Values "mysql-db" "port" }}
-  type: NodePort
+
 
 
