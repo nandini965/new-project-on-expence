@@ -14,17 +14,14 @@ backend:
     DB_PASSWORD: "ExpenseApp@1"
     DB_NAME: "transactions"
 
-
-#
 "mysql-db":
-   image: mysql:latest
-   port: 3306
-   rootPassword: "ExpenseApp@1"
-   database: "transactions"
-   user: "expense"
-   password: "ExpenseApp@1"
+  image: mysql:latest
+  port: 3306
+  rootPassword: "ExpenseApp@1"
+  database: "transactions"
+  user: "expense"
+  password: "ExpenseApp@1"
 
-#
 ingress:
   enabled: true
   host: expence-app.local

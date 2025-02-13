@@ -50,31 +50,18 @@ spec:
             - name: DB_NAME
               value: "{{ .Values.backend.env.DB_NAME }}"
 ---
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: mysql-db
 spec:
-  replicas: {{ .Values.replicaCount }}
-  selector:
-    matchLabels:
-      app: mysql-db
-  template:
-    metadata:
-      labels:
-        app: mysql-db
-    spec:
-      containers:
-        - name: mysql-db
-          image: { { (index .Values "mysql-db" "image") | quote } }
-          ports:
-            - containerPort: { { (index .Values "mysql-db" "port") | int } }
-          env:
-            - name: MYSQL_ROOT_PASSWORD
-              value: { { (index .Values "mysql-db" "rootPassword") | quote } }
-            - name: MYSQL_DATABASE
-              value: { { (index .Values "mysql-db" "database") | quote } }
-            - name: MYSQL_USER
-              value: { { (index .Values "mysql-db" "user") | quote } }
-            - name: MYSQL_PASSWORD
-              value: { { (index .Values "mysql-db" "password") | quote } }
+  containers:
+    - name: mysql-db
+      image: { { (index .Values "mysql-db" "image") | default "mysql:latest" | quote } }
+      ports:
+        - containerPort: { { (index .Values "mysql-db" "port") | default 3306 | int } }
+      env:
+        - name: MYSQL_ROOT_PASSWORD
+          value: { { (index .Values "mysql-db" "rootPassword") | default "ExpenseApp@1" | quote } }
+        - name: MYSQL_DATABASE
+          value: { { (index .Values "mysql-db" "database") | default "transactions" | quote } }
+        - name: MYSQL_USER
+          value: { { (index .Values "mysql-db" "user") | default "expense" | quote } }
+        - name: MYSQL_PASSWORD
+          value: { { (index .Values "mysql-db" "password") | default "ExpenseApp@1" | quote } }
