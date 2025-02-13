@@ -6,6 +6,6 @@ EXPOSE 80
 
 # Copy frontend build files to Nginx’s default HTML serving directory
 COPY . /usr/share/nginx/html
-
+COPY nginx.conf /etc/nginx/default.conf
 # Start Nginx
 CMD ["nginx", "-g", "daemon off;"]
