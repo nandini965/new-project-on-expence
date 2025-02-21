@@ -1,6 +1,6 @@
 services:
   frontend:
-    image: nandini965/frontend-expence:latest
+    build: ./frontend
     ports:
       - "80:80"
     volumes:
