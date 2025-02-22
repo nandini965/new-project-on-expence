@@ -25,4 +25,6 @@ spec:
                 name: backend
                 port:
                   number: {{ .Values.backend.port }}
+              pathRewrite:
+                nginx.ingress.kubernetes.io/rewrite-target: /$1
   {{- end }}
