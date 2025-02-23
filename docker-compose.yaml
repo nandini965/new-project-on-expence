@@ -1,14 +1,17 @@
+version: "3.8"
+
 services:
   frontend:
     build: ./frontend
     ports:
       - "80:80"
     volumes:
-        - ./frontend/nginx/default.conf:/etc/nginx/conf.d/default.conf  # Mount custom config
+      - ./frontend/nginx/default.conf:/etc/nginx/conf.d/default.conf  # Mount custom config
     networks:
       - app-network
     depends_on:
       - backend
+
   backend:
     build: ./backend
     ports:
@@ -19,7 +22,7 @@ services:
       DB_USER: expense
       DB_PASSWORD: ExpenseApp@1
       DB_NAME: transactions
-    network:
+    networks:   # ✅ Corrected from "network" to "networks"
       - app-network
     depends_on:
       mysql-db:
@@ -36,11 +39,16 @@ services:
     ports:
       - "3306:3306"
     volumes:
-     - ./backend/init.sql:/docker-entrypoint-initdb.d/init.sql  # ✅ Ensure correct path
-    network:
+      - ./backend/init.sql:/docker-entrypoint-initdb.d/init.sql  # ✅ Ensure correct path
+    networks:  # ✅ Corrected from "network" to "networks"
       - app-network
     healthcheck:
-      test: [ "CMD", "mysqladmin", "ping", "-h", "localhost", "-uroot", "-pExpenseApp@1" ]
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-uroot", "-pExpenseApp@1"]
       interval: 10s
       timeout: 5s
       retries: 5
+
+# ✅ Define the network at the bottom
+networks:
+  app-network:
+    driver: bridge
