@@ -79,3 +79,4 @@ spec:
               value: {{ (index .Values "mysql-db" "user") | default "expense" | quote }}
             - name: MYSQL_PASSWORD
               value: {{ (index .Values "mysql-db" "password") | default "ExpenseApp@1" | quote }}
+
