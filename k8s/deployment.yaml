@@ -50,7 +50,7 @@ spec:
             - containerPort: 8080
           env:
             - name: DB_SERVER
-            - value: "backend-mysql-db.default.svc.cluster.local"
+              value: "backend-mysql-db.default.svc.cluster.local"
             - name: MYSQL_DATABASE
               value: transactions
             - name: MYSQL_USER
