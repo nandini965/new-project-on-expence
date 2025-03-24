@@ -1,0 +1,81 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mysql-db
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mysql-db
+  template:
+    metadata:
+      labels:
+        app: mysql-db
+    spec:
+      restartPolicy: Always  # Ensures the pod restarts on failure
+      containers:
+        - name: mysql-db
+          image: mysql:latest
+          ports:
+            - containerPort: 3306
+          env:
+            - name: MYSQL_DATABASE
+              value: transactions
+            - name: MYSQL_USER
+              value: expense
+            - name: MYSQL_PASSWORD
+              value: ExpenseApp@1
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend
+  labels:
+    app: backend
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: backend
+  template:
+    metadata:
+      labels:
+        app: backend
+    spec:
+      containers:
+        - name: backend
+          image: nandini965/backend-expence:latest
+          ports:
+            - containerPort: 8080
+          env:
+            - name: DB_HOST
+            - value: mysql-db
+            - name: MYSQL_DATABASE
+              value: transactions
+            - name: MYSQL_USER
+              value: expense
+            - name: MYSQL_PASSWORD
+              value: ExpenseApp@1
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend
+  labels:
+    app: frontend
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: frontend
+  template:
+    metadata:
+      labels:
+        app: frontend
+    spec:
+      containers:
+        - name: frontend
+          image: nandini965/frontend-expence:latest
+          ports:
+            - containerPort: 80
