@@ -12,19 +12,21 @@ spec:
       labels:
         app: mysql-db
     spec:
-      restartPolicy: Always  # Ensures the pod restarts on failure
+      restartPolicy: Always
       containers:
         - name: mysql-db
           image: mysql:latest
           ports:
             - containerPort: 3306
           env:
+            - name: MYSQL_ROOT_PASSWORD
+              value: "ExpenseApp@1"
             - name: MYSQL_DATABASE
-              value: transactions
+              value: "transactions"
             - name: MYSQL_USER
-              value: expense
+              value: "expense"
             - name: MYSQL_PASSWORD
-              value: ExpenseApp@1
+              value: "ExpenseApp@1"
 
 ---
 apiVersion: apps/v1
@@ -55,7 +57,7 @@ spec:
               value: transactions
             - name: MYSQL_USER
               value: expense
-            - name: MYSQL_PASSWORD
+            - name: MYSQL_ROOT_PASSWORD
               value: ExpenseApp@1
 ---
 apiVersion: apps/v1
