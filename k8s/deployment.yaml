@@ -83,4 +83,4 @@ spec:
             - containerPort: 80
           env:
             - name: REACT_APP_BACKEND_URL
-              value: "backend.default.svc.cluster.local"
+              value: "backend.default.svc.cluster.local:8080"
