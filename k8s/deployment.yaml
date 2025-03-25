@@ -52,7 +52,7 @@ spec:
             - containerPort: 8080
           env:
             - name: DB_SERVER
-              value: "mysql-db.default.svc.cluster.local"
+              value: "backend:8080/"
             - name: MYSQL_DATABASE
               value: transactions
             - name: MYSQL_USER
@@ -83,4 +83,4 @@ spec:
             - containerPort: 80
           env:
             - name: REACT_APP_BACKEND_URL
-              value: "backend.default.svc.cluster.local:8080/api"
+              value: "api/"
